@@ -2,14 +2,14 @@ package io.sterodium.harness;
 
 import org.openqa.grid.internal.utils.GridHubConfiguration;
 import org.openqa.grid.web.Hub;
-import org.openqa.grid.web.servlet.RegistryBasedServlet;
 
+import javax.servlet.http.HttpServlet;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class HubBuilder {
 
-    List<String> servlets = new ArrayList<String>();
+    List<String> servlets = new ArrayList<>();
 
     HubBuilder() {
     }
@@ -21,8 +21,8 @@ public final class HubBuilder {
         return new EmbeddedHub(hub);
     }
 
-    public HubBuilder withServlet(Class<? extends RegistryBasedServlet> servlet) {
-        servlets.add(servlet.getClass().getName());
+    public HubBuilder withServlet(Class<? extends HttpServlet> servlet) {
+        servlets.add(servlet.getName());
         return this;
     }
 
