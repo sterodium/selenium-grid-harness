@@ -9,24 +9,6 @@ import java.net.URL;
 
 public final class SeleniumGridHarness {
 
-    public void startHub() {
-        EmbeddedHub hub = new EmbeddedHub();
-        try {
-            hub.start();
-        } catch (Exception e) {
-            throw new SeleniumHarnessException(e);
-        }
-    }
-
-    public void startNode() {
-        EmbeddedNode node = new EmbeddedNode();
-        try {
-            node.start();
-        } catch (Exception e) {
-            throw new SeleniumHarnessException(e);
-        }
-    }
-
     public void startWebServer() {
         EmbeddedWebServer webServer = new EmbeddedWebServer();
         webServer.init();
@@ -41,6 +23,14 @@ public final class SeleniumGridHarness {
             throw new SeleniumHarnessException(e);
         }
         return new RemoteWebDriver(url, capabilities);
+    }
+
+    public HubBuilder hub() {
+        return new HubBuilder();
+    }
+
+    public NodeBuilder node() {
+        return new NodeBuilder();
     }
 
 }

@@ -14,19 +14,20 @@ import static org.junit.Assert.assertThat;
 
 public class SeleniumGridTest {
 
-    WebDriver driver;
+    SeleniumGridHarness harness;
 
     @Before
     public void setUp() throws Exception {
-        SeleniumGridHarness harness = new SeleniumGridHarness();
-        harness.startHub();
-        harness.startNode();
-        harness.startWebServer();
-        driver = harness.startSession();
+        harness = new SeleniumGridHarness();
+        harness.hub().build().start();
+        harness.node().build().start();
     }
 
     @Test
     public void shouldStartSeleniumGrid() throws Exception {
+        harness.startWebServer();
+        WebDriver driver = harness.startSession();
+
         WebDriver.Navigation navigate = driver.navigate();
         navigate.to(new URL("http://localhost:8080"));
         String currentUrl = driver.getCurrentUrl();
