@@ -14,7 +14,7 @@ public final class SeleniumGridHarness {
         webServer.init();
     }
 
-    public WebDriver startSession() throws Exception {
+    public WebDriver startSession() throws SeleniumHarnessException {
         DesiredCapabilities capabilities = DesiredCapabilities.htmlUnitWithJs();
         URL url = null;
         try {

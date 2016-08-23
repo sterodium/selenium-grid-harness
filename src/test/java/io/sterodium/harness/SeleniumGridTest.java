@@ -9,8 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import java.net.URL;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SeleniumGridTest {
 
@@ -33,7 +32,7 @@ public class SeleniumGridTest {
         String currentUrl = driver.getCurrentUrl();
         System.out.println(currentUrl);
         WebElement element = driver.findElement(By.id("test"));
-        assertThat(element.getText(), equalTo("Hello"));
+        assertThat(element.getText()).isEqualTo("Hello");
     }
 
     @After
